@@ -1,0 +1,908 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-jaBweHhyEQi99apcMnbieM54kBKqIlDsuIrCucMA86Q=' 'sha256-DvNGb3Po+ndRvjhArTPDAcvy7JmQu91BTI0u2zl0Y+g='; script-src-attr 'none'; style-src 'sha256-/3QZwb4XByRbQIUfr5vPi07t6t+Q1+oPQuGmLZ1AMhc='; style-src-attr 'none'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'none'; object-src 'none'; worker-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="no-referrer">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f5ed">
+  <meta name="description" content="Мипикс — маленькое место для большого кошачьего хаоса. Котики, коробки, лазер и ни одной серьёзной задачи.">
+  <title>Мипикс — тут живут котики</title>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <style>@charset "UTF-8";
+:root{--ink:#2b2d30;--paper:#f7f5ed;--muted:#7a7b76;--coral:#f77955;--purple:#c3b8df;--line:#e0ded4;--green:#cadd9b;font-family:"Trebuchet MS","Segoe UI",sans-serif;color:var(--ink);background:var(--paper);font-synthesis:none;scroll-behavior:smooth}
+*{box-sizing:border-box}body{margin:0}button,a{-webkit-tap-highlight-color:transparent}button{font:inherit;color:inherit;cursor:pointer}button:disabled{cursor:default;opacity:.5}button:focus-visible,a:focus-visible,.room:focus-visible{outline:3px solid #6960a2;outline-offset:4px}a{color:inherit;text-decoration:none}.wrap{width:min(1320px,calc(100% - 96px));margin-inline:auto}.svg-library{position:absolute;width:0;height:0;overflow:hidden}.icon{width:22px;height:22px;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.7;flex-shrink:0}
+.site-header{height:106px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:11px;font-size:34px;font-weight:900;letter-spacing:-1.8px}.brand-dot{color:var(--coral)}.brand-cat{display:grid;place-items:center;width:43px;height:43px;background:var(--green);border-radius:15px;transform:rotate(-8deg)}.brand-cat svg{width:31px;height:31px;fill:none;stroke:var(--ink);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.site-header nav{display:flex;gap:35px;font-size:14px}.site-header nav a{display:flex;gap:10px;align-items:center;color:#777971}.site-header nav .nav-active{color:var(--ink);font-weight:700}.nav-dot{width:6px;height:6px;background:var(--coral);border-radius:50%}.sound-button{display:flex;align-items:center;gap:10px;background:none;border:1px solid #dbdcd1;border-radius:24px;padding:11px 16px;font-size:12px}.sound-button:hover{background:#eceadd}.sound-button .icon{width:18px;height:18px}.sound-button[aria-pressed=true]{background:#e2eccb;border-color:#c5d69e}
+.intro{display:flex;align-items:center;justify-content:space-between;gap:35px;padding:35px 0 31px}.eyebrow{display:flex;align-items:center;gap:9px;font-size:9px;letter-spacing:1.6px;font-weight:700;color:#76796b}.eyebrow>span{width:7px;height:7px;transform:rotate(45deg);background:#9da88c}h1{position:relative;display:inline-block;margin:17px 0 0;font-weight:800;font-size:clamp(36px,4.2vw,61px);line-height:1.08;letter-spacing:-2.9px}.h1-accent{color:#7d6d9d}.title-star{position:absolute;right:-58px;top:3px;width:45px;height:45px;fill:var(--coral);transform:rotate(14deg)}.intro-note{position:relative;margin-right:24px;padding-top:18px;flex-shrink:0;font-size:13px;line-height:1.7}.intro-note p{margin:0 0 13px;color:#75766f}.intro-note strong{font-weight:400;color:var(--ink)}.handwritten{font-family:"Comic Sans MS",cursive;font-size:14px;color:#7d6d9d;display:block;transform:rotate(-4deg)}.note-doodle{position:absolute;left:-51px;top:37px;font-size:58px;font-family:cursive;transform:rotate(30deg);font-weight:400;color:#9b8ab5}
+.playground{position:relative;border:1px solid #a99ac1;border-radius:20px;background:var(--purple);padding:0 12px 12px;box-shadow:0 5px 0 #e8e3e8;scroll-margin-top:16px;isolation:isolate}.room-heading{height:51px;display:flex;align-items:center;justify-content:space-between;padding:0 8px;gap:12px}.room-label{display:flex;align-items:center;gap:9px;font-size:9px;font-weight:700;letter-spacing:1.4px}.live-dot{background:#5b7251;width:6px;height:6px;border-radius:50%;box-shadow:0 0 0 3px #aabd8d66}.room-number{font-weight:400;letter-spacing:.5px;opacity:.55;margin-left:5px}.room-actions{display:flex;align-items:center;gap:10px}.room-status{font-size:11px;margin-right:9px;opacity:.75}.icon-button{background:#ffffff33;border:1px solid #72638633;display:grid;place-items:center;border-radius:8px;width:29px;height:29px}.icon-button .icon{width:15px;height:15px}.icon-button:hover{background:#ffffff70}.room{position:relative;height:clamp(350px,34vw,470px);overflow:hidden;border:1px solid #a496ad;border-radius:12px;background:#f5ebd6;touch-action:pan-y;container-type:size}.room-art{width:100%;height:100%;position:absolute;inset:0;pointer-events:none}.sunbeam{pointer-events:none;position:absolute;top:35%;left:7%;width:32%;height:60%;transform:skewX(-24deg);background:linear-gradient(150deg,#fffbc52b,#fffbc500);mix-blend-mode:screen}.room-instruction{position:absolute;top:18px;left:20px;font-size:10px;letter-spacing:.2px;color:#918472;pointer-events:none}.instruction-spark{color:#b3a17c;margin-right:6px}.room-sticker{position:absolute;bottom:25px;right:22px;border:1px dashed #8c7ba7;color:#7a678b;background:#e3daedc7;transform:rotate(10deg);border-radius:50%;width:70px;height:70px;display:flex;justify-content:center;align-items:center;flex-direction:column;font-size:17px;font-weight:700;line-height:1.1;pointer-events:none}.room-sticker span{font-size:10px;font-weight:400;margin-top:4px}.entity-layer{position:absolute;inset:0;pointer-events:none}.cat{position:absolute;left:0;top:0;width:112px;height:100px;border:0;background:none;padding:0;pointer-events:auto;touch-action:manipulation;will-change:transform;cursor:grab;filter:drop-shadow(0 4px 1px #62533d12)}.cat:active{cursor:grabbing}.cat svg{overflow:visible;width:100%;height:100%;pointer-events:none}.cat-face{transform-origin:63px 45px}.cat-name{position:absolute;top:-8px;left:50%;transform:translateX(-50%) translateY(3px);background:#fffcf1ed;padding:5px 9px;border-radius:7px;font-size:10px;white-space:nowrap;border:1px solid #d6cdbb;opacity:0;transition:opacity .16s,transform .16s;pointer-events:none;z-index:2}.cat:hover .cat-name,.cat:focus-visible .cat-name{opacity:1;transform:translateX(-50%) translateY(0)}.cat .eyes-sleep,.cat .zzz{opacity:0}.cat .eyes-open{opacity:1}.cat.sleeping .eyes-open{opacity:0}.cat.sleeping .eyes-sleep,.cat.sleeping .zzz{opacity:1}.cat.sleeping .cat-torso{animation:breathe 3s ease-in-out infinite;transform-origin:55px 72px}.cat.walking .leg-front{animation:walk .26s ease-in-out infinite alternate;transform-origin:70px 78px}.cat.walking .leg-back{animation:walk .26s ease-in-out infinite alternate-reverse;transform-origin:38px 78px}.cat .tail{transform-origin:29px 65px;animation:tail 3.7s ease-in-out infinite alternate}.cat.walking .tail{animation-duration:.6s}.cat.petted .cat-face{animation:nuzzle .35s ease-in-out 3}.cat.in-box{opacity:.65}.cat .zzz{font:700 14px "Trebuchet MS",sans-serif;fill:#8b7ca9;animation:dream 3s ease-in-out infinite}.cat.facing-left .cat-sprite{transform:scaleX(-1);transform-origin:56px 50px}
+.box{position:absolute;left:0;top:0;width:100px;height:86px;border:none;padding:0;background:none;pointer-events:auto;cursor:grab;touch-action:none;will-change:transform}.box svg{width:100%;height:100%;overflow:visible}.box:active{cursor:grabbing}.box-label{position:absolute;top:-15px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:10px;opacity:0;transition:opacity .2s}.box:hover .box-label,.box:focus-visible .box-label{opacity:1}.box.occupied .box-cat-head{opacity:1}.box-cat-head{opacity:0;transition:opacity .3s}.food{position:absolute;width:9px;height:9px;background:#bd7952;border:1px solid #956044;border-radius:3px;pointer-events:none;box-shadow:1px 2px 0 #79513420;transform:rotate(35deg)}.toy-button{position:absolute;left:0;top:0;padding:8px 13px;background:#fcf0cd;border:1px solid #b6a37b;border-radius:7px;font-size:9px;box-shadow:0 3px 0 #c4b592;pointer-events:auto;font-family:inherit;letter-spacing:1px;will-change:transform}.toy-button span{color:#d7785c}.effect{position:absolute;left:0;top:0;font-size:22px;pointer-events:none;animation:float-away 1.3s ease-out forwards;color:#ed927e;z-index:60}.effect.word{font-size:13px;background:#fff9e6d9;border:1px solid #ddcbb4;border-radius:11px;padding:6px 9px;color:#78665e;white-space:nowrap;animation-duration:1.9s}.dust{position:absolute;width:11px;height:6px;border-radius:50%;background:#e8d5ac;pointer-events:none;animation:dust .5s ease-out forwards}#laser-dot{position:absolute;width:9px;height:9px;border-radius:50%;background:#ff3548;box-shadow:0 0 0 5px #ff354818,0 0 16px #ff3548;display:none;pointer-events:none;z-index:80}.room.laser-active{cursor:crosshair;touch-action:none}.room.laser-active .cat{cursor:crosshair}.room.laser-active #laser-dot.visible{display:block}.pause-overlay{position:absolute;inset:0;background:#f6f2e1c9;backdrop-filter:blur(3px);z-index:100;display:flex;align-items:center;justify-content:center;flex-direction:column;font-weight:700;font-size:30px;gap:10px;pointer-events:none}.pause-overlay[hidden]{display:none}.pause-overlay>span{font-size:40px;color:#9484b0}.pause-overlay small{font-size:12px;font-weight:400;color:#7a756d}
+.toolbar{background:#faf9f0;border:1px solid #a496ad;border-top:0;border-radius:0 0 12px 12px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 17px;margin:0 8px}.tools{display:flex;gap:9px;align-items:center}.tool{height:43px;display:flex;align-items:center;justify-content:center;gap:9px;padding:0 16px;border:1px solid #deddd0;background:#f7f6ee;border-radius:9px;font-size:12px;font-weight:600;transition:transform .15s,background .15s,box-shadow .15s;white-space:nowrap}.tool .icon{width:19px;height:19px}.tool:hover{background:#eae6d8;transform:translateY(-2px);box-shadow:0 2px 0 #d4cfc0}.tool:active{transform:translateY(1px);box-shadow:none}.tool-primary{background:var(--coral);border-color:#dd714f;color:#302d2a;box-shadow:0 2px 0 #d87051}.tool-primary:hover{background:#ff8b68;box-shadow:0 4px 0 #d87051}.tool kbd{font:9px inherit;border:1px solid #a250353d;border-radius:4px;padding:2px 4px;opacity:.6;margin-left:6px}.laser-tool[aria-pressed=true]{background:#ece3f6;border-color:#af98c9}.toggle-dot{width:6px;height:6px;border-radius:50%;background:#c5c3b8;margin-left:2px}.laser-tool[aria-pressed=true] .toggle-dot{background:#f6536d;box-shadow:0 0 0 3px #f6536d15}.cat-counter{display:flex;align-items:center;gap:7px;font-size:11px;white-space:nowrap;color:#7c7d73}.cat-counter .icon{width:18px;height:18px;color:#8c7d9e}.cat-counter strong{color:#383d32;font-size:13px}.toast{position:absolute;left:50%;bottom:100px;transform:translateX(-50%) translateY(8px);padding:11px 17px;border-radius:12px;background:#333732ed;color:#fff9e9;font-size:12px;box-shadow:0 3px 15px #0001;max-width:90%;text-align:center;pointer-events:none;z-index:110;opacity:0;transition:opacity .2s,transform .2s}.toast.visible{opacity:1;transform:translateX(-50%) translateY(0)}
+.under-room{display:flex;align-items:center;justify-content:space-between;gap:23px;padding:30px 5px 32px;scroll-margin-top:20px}.tiny-intro{display:flex;align-items:center;gap:13px;font-size:12px;line-height:1.6;flex-shrink:0;margin:0}.tiny-intro strong{font-weight:400;color:#7c7d75}.tiny-spark{font-size:39px;color:#95a77a;line-height:1}.hint{display:flex;align-items:flex-start;gap:11px}.hint-number{font-size:10px;color:#aaa99b;line-height:1.9;padding-top:1px}.hint p{margin:0;font-size:10px;line-height:1.9;color:#8a8a7e}.hint strong{font-size:11px;color:#55594d;font-weight:600}.site-footer{border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:20px;min-height:74px;color:#93958a;font-size:9px}.site-footer>span:first-child{display:flex;align-items:center;gap:6px}.site-footer .icon{width:12px;height:12px;color:#c58b7b}.site-footer a{color:#747a66}.site-footer a:hover{color:#333}
+@keyframes walk{from{transform:rotate(-9deg)}to{transform:rotate(11deg)}}@keyframes tail{from{transform:rotate(-9deg)}to{transform:rotate(10deg)}}@keyframes breathe{50%{transform:scaleY(.965) scaleX(1.015)}}@keyframes nuzzle{50%{transform:rotate(-10deg) translateY(-3px)}}@keyframes dream{50%{transform:translateY(-5px);opacity:.4}}@keyframes float-away{0%{opacity:0;transform:translateY(0) scale(.7)}20%{opacity:1}100%{opacity:0;transform:translateY(-65px) rotate(10deg) scale(1.1)}}@keyframes dust{to{opacity:0;transform:translateX(-15px) scale(1.6)}}
+body.paused .cat *,body.paused .cat{animation-play-state:paused!important}
+.cat.happy .eyes-open{opacity:0}.cat.happy .eyes-sleep{opacity:1}
+.cat{width:144px;height:136px;filter:none}.cat-shadow{position:absolute;width:76%;height:10%;left:12%;bottom:0;border-radius:50%;background:radial-gradient(ellipse,#725e4552 0%,#725e4500 72%);pointer-events:none;transition:transform .25s,opacity .25s}.cat-visual{position:absolute;inset:0;display:block;transform-origin:50% 90%;pointer-events:none;animation:cat-idle 3.8s ease-in-out infinite}.cat .cat-art,.box .cat-art{position:absolute;inset:0;width:100%;height:100%;overflow:hidden;pointer-events:none;filter:drop-shadow(0 2px 1px #6f554515)}.cat-asleep{opacity:0}.cat-awake{opacity:1}.cat.sleeping .cat-awake{opacity:0}.cat.sleeping .cat-asleep{opacity:1}.cat.sleeping .cat-visual{animation:cat-breathe 3.4s ease-in-out infinite}.cat.walking .cat-visual{animation:cat-trot .32s ease-in-out infinite}.cat.facing-left .cat-visual{scale:-1 1}.cat.petted .cat-visual{animation:cat-pet .45s ease-in-out 3}.cat .sleep-symbol{position:absolute;top:19%;right:2%;color:#8a739e;opacity:0;font:bold 18px "Trebuchet MS",sans-serif;animation:dream 3s ease-in-out infinite;pointer-events:none}.sleep-symbol>span{position:absolute;top:-10px;right:-10px;font-size:12px}.cat.sleeping .sleep-symbol{opacity:1}.cat-name{top:-2px}.cat:hover .cat-shadow{transform:scale(1.07);opacity:.7}.box>.box-visitor{position:absolute;width:115%;height:130%;left:-14%;top:-69%;opacity:0;pointer-events:none;clip-path:inset(0 0 28% 0)}.box.occupied>.box-visitor{opacity:1}.box>svg{position:relative;z-index:1}.box .box-cat-head{display:none}.box-visitor .cat-asleep{display:none}.box-visitor .cat-visual{animation:cat-idle 4s ease-in-out infinite}
+@keyframes cat-idle{0%,100%{transform:rotate(-.5deg) scaleY(1)}50%{transform:rotate(.5deg) scaleY(.985)}}@keyframes cat-trot{0%,100%{transform:translateY(0) rotate(-1deg)}25%{transform:translateY(-4px) rotate(1.2deg)}50%{transform:translateY(0) rotate(.6deg)}75%{transform:translateY(-3px) rotate(-1.2deg)}}@keyframes cat-breathe{0%,100%{transform:scale(1,.98)}50%{transform:scale(1.015,1)}}@keyframes cat-pet{0%,100%{transform:rotate(0) scale(1)}50%{transform:rotate(-5deg) scale(1.04) translateY(-3px)}}
+@media(min-width:1600px){.intro{padding-top:43px;padding-bottom:40px}.site-header{height:116px}.room{height:470px}.under-room{padding-block:35px}}
+@media(max-width:1100px){.wrap{width:calc(100% - 56px)}h1{font-size:48px}.title-star{right:-40px;width:33px}.intro-note{margin-right:0;font-size:12px}.tool{padding:0 12px}.tool kbd{display:none}.cat-counter{font-size:10px}.hint p{font-size:9px}.under-room{gap:15px}.tiny-intro{font-size:10px}}
+@media(max-width:850px){.wrap{width:calc(100% - 36px)}.site-header{height:85px}.brand{font-size:29px}.brand-cat{width:37px;height:37px}.site-header nav{gap:22px;font-size:12px}.sound-button{padding:9px 11px}.sound-button span{display:none}.intro{padding:28px 0;gap:15px}h1{font-size:40px;letter-spacing:-2px}.intro-note{font-size:11px;padding-top:10px}.note-doodle{left:-28px;top:30px;font-size:35px}.handwritten{font-size:11px}.title-star{display:none}.eyebrow{font-size:8px;letter-spacing:1px}.room{height:365px}.toolbar{padding:12px;gap:10px;margin:0 5px}.tools{gap:6px}.tool{font-size:11px;padding:0 10px;gap:7px;height:41px}.tool .icon{width:17px;height:17px}.cat-counter>span{display:none}.under-room{flex-wrap:wrap;justify-content:flex-start;gap:20px 30px}.tiny-intro{display:none}.hint{flex:1}.site-footer>span:nth-child(2){display:none}}
+@media(max-width:560px){.wrap{width:calc(100% - 24px)}.site-header{height:76px;gap:10px}.brand{font-size:27px;gap:8px}.brand-cat{width:32px;height:32px;border-radius:10px}.brand-cat svg{width:25px;height:25px}.site-header nav{font-size:11px;gap:15px}.site-header nav a:nth-child(2){display:none}.sound-button{padding:8px;border-radius:11px}.intro{display:block;padding:25px 4px 24px}.eyebrow{font-size:7px;letter-spacing:1.3px}h1{font-size:clamp(30px,7.9vw,44px);letter-spacing:-1.7px;margin-top:14px;line-height:1.15}.intro-note{display:none}.playground{padding:0 6px 7px;border-radius:15px}.room-heading{height:44px;padding:0 6px;gap:5px}.room-label{font-size:7px;letter-spacing:1px;gap:6px}.room-number{display:none}.room-status{display:none}.room-actions{gap:6px}.icon-button{width:27px;height:27px}.room{height:410px;border-radius:9px}.room-art{width:180%;max-width:none;left:-40%}.room-instruction{top:15px;left:12px;font-size:9px}.room-sticker{width:50px;height:50px;right:13px;bottom:14px;font-size:12px}.room-sticker span{font-size:8px}.cat{width:87px;height:78px}.box{width:83px;height:72px}.toolbar{padding:10px;margin:0 4px;display:block}.tools{display:grid;grid-template-columns:1fr 1fr;gap:8px}.tool{width:100%;font-size:11px;height:40px;padding:0 9px;gap:7px}.tool-primary{box-shadow:0 2px 0 #d87051}.cat-counter{justify-content:center;padding-top:11px;font-size:10px}.cat-counter>span{display:block}.under-room{padding:25px 5px;display:grid;grid-template-columns:1fr;gap:15px}.hint{gap:14px}.hint-number{width:22px;height:22px;border:1px solid #deded0;border-radius:50%;font-size:8px;text-align:center;line-height:20px;padding:0}.hint p{font-size:10px;line-height:1.6}.hint p br{display:none}.hint p strong{margin-right:5px;font-size:10px}.site-footer{min-height:66px;font-size:8px;gap:12px}.toast{bottom:158px;font-size:11px}.toy-button{font-size:7px;padding:7px 9px}.cat-name{font-size:9px}.pause-overlay{font-size:24px}.pause-overlay small{font-size:10px}}
+@media(prefers-reduced-motion:reduce){:root{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition:none!important}}
+@media(max-width:560px){.cat{width:108px;height:102px}.cat-name{top:-5px}.cat .sleep-symbol{font-size:14px}.sleep-symbol>span{font-size:10px}}
+.cat-renderer{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:10}.animated-cats .cat>.cat-visual{visibility:hidden}.animated-cats .cat-shadow{z-index:0;opacity:.65}.animated-cats .cat-name{z-index:2}.animated-cats .cat.sleeping .sleep-symbol{opacity:.75}.cat.sprinting .cat-shadow{transform:scale(.87);opacity:.45}
+.cat-renderer{display:none}.cat-motion{position:absolute;pointer-events:none;z-index:1}.cat>.sleep-symbol{z-index:2}.room:not(.animated-cats) .cat-motion{display:none}
+</style>
+</head>
+<body>
+  <svg class="svg-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+    <symbol id="i-cat" viewBox="0 0 24 24"><path d="M4 11V3l5 4h6l5-4v8c3 9-19 12-16 0Z"/><path d="m8 12 .01 0M16 12l.01 0M10 16q2 2 4 0"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24"><path d="m3 9 9-5 9 5v11H3Zm0 0 9 4 9-4M12 13v7M3 9 1 5l9-3 2 2 2-2 9 3-2 4"/></symbol>
+    <symbol id="i-fish" viewBox="0 0 24 24"><path d="M17 12q-8-11-15 0 7 11 15 0Zm0 0 5-6v12ZM6 11l.01 0M10 7v10"/></symbol>
+    <symbol id="i-laser" viewBox="0 0 24 24"><path d="m4 20 8-8 4 4-8 8ZM15 9l3-3M12 6V2M18 12h4M18 3l3-2"/></symbol>
+    <symbol id="i-sound" viewBox="0 0 24 24"><path d="M3 9v6h4l5 4V5L7 9ZM16 8q5 4 0 8M19 4q9 8 0 16"/></symbol>
+    <symbol id="i-mute" viewBox="0 0 24 24"><path d="M3 9v6h4l5 4V5L7 9ZM17 9l5 6M22 9l-5 6"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24"><path d="M4 10a8 8 0 1 1 1 8M4 4v6h6"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="m8 4 12 8-12 8Z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="m6 18 12-12M6 6h12v12"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20S0 13 3 6q4-5 9 1 5-6 9-1 3 7-9 14Z"/></symbol>
+  </defs></svg>
+
+  <header class="site-header wrap">
+    <a class="brand" href="./" aria-label="Мипикс, главная"><span class="brand-cat"><svg><use href="#i-cat"/></svg></span><span>мипикс<span class="brand-dot">.</span></span></a>
+    <nav aria-label="Основная навигация"><a class="nav-active" href="#playground">Игровая <span class="nav-dot"></span></a><a href="#guide">Как тут жить <span aria-hidden="true">↗</span></a></nav>
+    <button class="sound-button" id="sound" type="button" aria-pressed="false" aria-label="Включить звук"><svg class="icon"><use href="#i-mute"/></svg><span>Звук выключен</span></button>
+  </header>
+
+  <main class="wrap">
+    <section class="intro" aria-labelledby="page-title">
+      <div class="intro-copy"><div class="eyebrow"><span></span> МАЛЕНЬКИЙ ПЕРЕРЫВ ОТ БОЛЬШОГО МИРА</div><h1 id="page-title">Дел — ноль.<br>Котиков — <span class="h1-accent">сколько хочешь.</span><svg class="title-star" viewBox="0 0 50 50" aria-hidden="true"><path d="m25 2 5 16 17-4-12 13 12 11-18-3-6 14-3-17L3 34l13-11L7 10l16 8Z"/></svg></h1></div>
+      <div class="intro-note"><span class="note-doodle" aria-hidden="true">↙</span><p>Здесь нет важных кнопок.<br>Только вы и немного<br><strong>кошачьего беспорядка.</strong></p><span class="handwritten">Можно просто залипнуть.</span></div>
+    </section>
+
+    <section class="playground" id="playground" aria-label="Интерактивная кошачья комната">
+      <div class="room-heading"><div class="room-label"><span class="live-dot"></span><span>КОШАЧЬЯ КОМНАТА</span><span class="room-number">№ 001</span></div><div class="room-actions"><span class="room-status" id="room-status">Все дома. Почти.</span><button class="icon-button" id="pause" aria-label="Поставить на паузу" aria-pressed="false" title="Пауза"><svg class="icon"><use href="#i-pause"/></svg></button><button class="icon-button" id="reset" aria-label="Начать заново" title="Начать заново"><svg class="icon"><use href="#i-reset"/></svg></button></div></div>
+
+      <div class="room" id="room" data-cat-detail="./cats-atlas-67a49f6ef688.webp" tabindex="0" aria-label="Игровая зона. Нажмите на котика, чтобы погладить. Коробки можно перетаскивать.">
+        <svg class="room-art" viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <defs><pattern id="wall-grain" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="3" cy="6" r=".6" fill="#c6bfa8" opacity=".18"/></pattern><pattern id="tiles" width="150" height="70" patternUnits="userSpaceOnUse" patternTransform="skewX(-24)"><path d="M0 0H150V70H0Z" fill="none" stroke="#cabda1" stroke-width="1" opacity=".3"/></pattern></defs>
+          <path fill="#f6edd9" d="M0 0h1200v500H0z"/><path fill="url(#wall-grain)" d="M0 0h1200v500H0z"/>
+          <path fill="#e8d9bc" d="M0 226h1200v274H0z"/><path fill="url(#tiles)" d="M0 239h1200v261H0z"/>
+          <path d="M0 226h1200M0 233h1200" fill="none" stroke="#c4b798" stroke-width="2"/>
+          <g class="room-window"><rect x="126" y="40" width="215" height="165" rx="100" fill="#dfd1af"/><path d="M135 196v-62a99 99 0 0 1 198 0v62Z" fill="#a6c9c4" stroke="#6d8e89" stroke-width="3"/><path d="M143 188v-55a91 91 0 0 1 182 0v55Z" fill="#c3e0de"/>
+          <circle cx="279" cy="87" r="22" fill="#fff6c5"/><path d="M143 166q40-42 88-3 55-58 94-4v29H143Z" fill="#a7c3a3"/><path d="M143 183q60-35 106-5 41-18 76-6v16H143Z" fill="#88ab92"/><path d="M234 45v151M136 125h196" stroke="#faf4df" stroke-width="8"/><rect x="117" y="195" width="232" height="13" rx="5" fill="#fdf7e8" stroke="#c9bd9e" stroke-width="2"/></g>
+          <g transform="translate(450 67) rotate(-5)"><rect width="71" height="83" rx="3" fill="#ad826b"/><rect x="6" y="6" width="59" height="71" rx="1" fill="#f5b6a6"/><path d="M23 44q15-24 30 0-15 24-30 0Zm0 0-12-8v16Z" fill="#f7e8c2"/><circle cx="45" cy="42" r="2" fill="#69514b"/><path d="M30 3V-9l9-8" fill="none" stroke="#a7977b" stroke-width="2"/></g>
+          <g transform="translate(709 48)"><rect width="147" height="104" rx="3" fill="#b6adce"/><rect x="7" y="7" width="133" height="90" fill="#e6dfef"/><path d="m36 74 14-43 20 18 23-23 17 48Z" fill="#80759c"/><circle cx="108" cy="29" r="9" fill="#f4c56e"/><path d="M43 83h61" stroke="#b8abc9" stroke-width="2"/></g>
+          <g transform="translate(1037 134)"><path d="M32 113V24M34 63Q-13 62 2 28q28 0 32 35M34 83q50-11 45-47-35-3-45 47M33 40Q5 24 24 0q25 8 9 40" fill="#7f9c76" stroke="#617c5a" stroke-width="3"/><path d="M8 103h54l-9 52H18Z" fill="#cf8975" stroke="#aa6b57" stroke-width="2"/><path d="M12 113h47" stroke="#e2a18d" stroke-width="5"/></g>
+          <ellipse cx="635" cy="352" rx="217" ry="84" fill="#d6aca5" opacity=".3"/><ellipse cx="635" cy="346" rx="206" ry="77" fill="#e5bdb3"/><ellipse cx="635" cy="346" rx="193" ry="66" fill="none" stroke="#f2d0c4" stroke-width="3"/><path d="M448 347h374M468 320h333M478 375h314" stroke="#dcafa6" stroke-width="2" opacity=".7"/>
+          <g transform="translate(88 310) rotate(-12)"><path d="M0 10q18-17 38 0v14H0Z" fill="#839f9c"/><ellipse cx="19" cy="10" rx="18" ry="7" fill="#bad0c8"/><ellipse cx="19" cy="9" rx="11" ry="3" fill="#768e89"/><path d="m14 19 3-3 4 3 3-3" stroke="#e4eee2" stroke-width="2" fill="none"/></g>
+          <g transform="translate(957 400)"><circle r="17" fill="#b5a1cc"/><path d="M-14-9Q4-11 11 12M-15 6Q1 2 16-3M-6-15Q-13 1 4 16" fill="none" stroke="#9584b0" stroke-width="2"/><path d="M15 4q21 8 30-2t19 6" fill="none" stroke="#b5a1cc" stroke-width="2"/></g>
+        </svg>
+        <div class="sunbeam" aria-hidden="true"></div>
+        <div class="room-instruction" id="room-instruction"><span class="instruction-spark">✦</span> Погладьте котика. Он заслужил.</div>
+        <div id="objects" class="entity-layer"></div>
+        <div id="cats" class="entity-layer"></div>
+        <div id="effects" class="entity-layer" aria-hidden="true"></div>
+        <div id="laser-dot" aria-hidden="true"></div>
+        <div class="room-sticker" aria-hidden="true">100%<br><span>мур-мур</span></div>
+        <div class="pause-overlay" id="pause-overlay" hidden><span>Ⅱ</span> Тихий час <small>Котики подождут. Возвращайтесь.</small></div>
+      </div>
+
+      <div class="toolbar" aria-label="Управление игровой комнатой">
+        <div class="tools"><button class="tool tool-primary" id="add-cat"><svg class="icon"><use href="#i-plus"/></svg><span>Ещё котика</span><kbd>К</kbd></button><button class="tool" id="add-box"><svg class="icon"><use href="#i-box"/></svg><span>Коробка</span></button><button class="tool" id="feed"><svg class="icon"><use href="#i-fish"/></svg><span>Вкусняшки</span></button><button class="tool laser-tool" id="laser" aria-pressed="false"><svg class="icon"><use href="#i-laser"/></svg><span>Лазер</span><span class="toggle-dot"></span></button></div>
+        <div class="cat-counter"><svg class="icon"><use href="#i-cat"/></svg><strong id="cat-count">5</strong><span id="cat-count-label">котиков дома</span></div>
+      </div>
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    </section>
+
+    <section class="under-room" id="guide" aria-label="Как играть"><p class="tiny-intro"><span class="tiny-spark" aria-hidden="true">✳</span> <span>Никаких правил.<br><strong>Ну, почти никаких.</strong></span></p><div class="hint"><span class="hint-number">01</span><p><strong>Дарите любовь</strong><br>Нажмите на котика, чтобы погладить.</p></div><div class="hint"><span class="hint-number">02</span><p><strong>Создавайте уют</strong><br>Добавляйте и двигайте коробки.</p></div><div class="hint"><span class="hint-number">03</span><p><strong>Устройте тыгыдык</strong><br>Включите лазер и водите по комнате.</p></div></section>
+  </main>
+  <footer class="site-footer wrap"><span>Сделано для ничего-не-делания <svg class="icon"><use href="#i-heart"/></svg></span><span>Все котики вымышлены. Любовь — настоящая.</span><a href="#playground">Побудем ещё? ↑</a></footer>
+  <script>/* Lightweight textured mesh animation. One canvas and one shared texture for all cats. */
+(() => {
+  'use strict';
+  const VERTEX = `
+    attribute vec2 a_pos;
+    uniform vec2 u_resolution;
+    uniform vec4 u_rect;
+    uniform vec4 u_crop;
+    uniform float u_phase;
+    uniform float u_stride;
+    uniform float u_facing;
+    uniform float u_time;
+    uniform float u_seed;
+    uniform float u_sleep;
+    uniform float u_look;
+    uniform float u_pounce;
+    uniform float u_behavior;
+    uniform float u_alpha;
+    varying vec2 v_uv;
+    varying float v_alpha;
+    const float PI=3.14159265;
+    vec2 paw(float phase) {
+      float p=fract(phase);
+      float stance=.65;
+      if(p<stance) return vec2(mix(.055,-.055,p/stance),0.);
+      float t=(p-stance)/(1.-stance);
+      return vec2(mix(-.055,.055,t),-sin(t*PI)*.047);
+    }
+    float band(float x,float center,float spread) { return exp(-pow((x-center)/spread,2.)*1.9); }
+    void main(){
+      vec2 p=a_pos;
+      v_uv=u_crop.xy+a_pos*u_crop.zw;
+      v_alpha=u_alpha;
+      float breathing=sin(u_time*1.7+u_seed)*.0035;
+      if(u_sleep>.5){
+        p.y-=(1.-p.y)*breathing;
+        p.x+=(p.x-.5)*breathing*.45;
+      } else {
+        float lower=smoothstep(.64,.94,p.y);
+        vec2 leg=vec2(0.);
+        // A cat's four-beat walking sequence: left hind, left fore, right hind, right fore.
+        leg+=paw(u_phase)*band(p.x,.23,.075);
+        leg+=paw(u_phase+.75)*band(p.x,.64,.072);
+        leg+=paw(u_phase+.50)*band(p.x,.43,.069);
+        leg+=paw(u_phase+.25)*band(p.x,.81,.076);
+        p+=leg*lower*u_stride;
+        // Transfer weight over grounded paws, while the head stays nearly level.
+        float torso=1.-smoothstep(.60,.94,p.y);
+        float head=band(p.x,.76,.31)*(1.-smoothstep(.36,.61,p.y));
+        float bob=sin(u_phase*PI*4.)*.0035*u_stride;
+        p.y+=bob*torso*(1.-head*.7);
+        p.x+=sin(u_phase*PI*2.)*.003*u_stride*torso;
+        p.y-=(1.-p.y)*breathing;
+        // Tail movement is rooted at the rump; the tip moves more than the base.
+        float tail=(1.-smoothstep(.33,.46,p.x))*(1.-smoothstep(.60,.77,p.y));
+        float flick=sin(u_time*.86+u_seed)*.012+sin(u_time*2.8+u_seed)*.003;
+        p.x+=flick*tail*(.75-p.y);
+        p.y+=cos(u_time*.86+u_seed)*.007*tail;
+        // Small head turns and occasional ear movements.
+        p.x+=head*u_look*.012;
+        p.y+=head*abs(u_look)*.004;
+        float ear=(1.-smoothstep(.16,.27,p.y))*smoothstep(.52,.75,p.x);
+        p.x+=ear*sin(u_time*5.+u_seed)*.005*pow(max(0.,sin(u_time*.48+u_seed)),12.);
+        if(u_behavior>1.5){
+          // Grooming: the head dips toward the chest in two small strokes.
+          float dip=max(0.,sin(u_time*5.2+u_seed));
+          p.y+=head*dip*.024;
+          p.x-=head*dip*.018;
+        } else if(u_behavior>.5){
+          // A brief sniff, with a gentle forward head tilt.
+          p.y+=head*(.012+sin(u_time*3.)*.006);
+          p.x+=head*.008;
+        }
+        if(u_pounce>0.){
+          float crouch=(1.-smoothstep(0.,.23,u_pounce))*.075;
+          p.y+=(1.-p.y)*crouch;
+          float flight=sin(clamp((u_pounce-.16)/.76,0.,1.)*PI);
+          p.y-=flight*.072;
+          p.x+=lower*band(p.x,.76,.24)*flight*.025;
+        }
+      }
+      if(u_facing<0.) p.x=1.-p.x;
+      vec2 pixel=u_rect.xy+p*u_rect.zw;
+      gl_Position=vec4(pixel.x/u_resolution.x*2.-1.,1.-pixel.y/u_resolution.y*2.,0.,1.);
+    }
+  `;
+  const FRAGMENT = `
+    precision mediump float;
+    uniform sampler2D u_texture;
+    varying vec2 v_uv;
+    varying float v_alpha;
+    void main(){vec4 c=texture2D(u_texture,v_uv);gl_FragColor=vec4(c.rgb,c.a*v_alpha);}
+  `;
+
+  class CatRenderer {
+    constructor(room) {
+      this.room=room;
+      this.ready=false;
+      this.canvas=document.createElement('canvas');
+      this.canvas.className='cat-renderer';
+      this.canvas.setAttribute('aria-hidden','true');
+      this.gl=this.canvas.getContext('webgl',{alpha:true,premultipliedAlpha:false,antialias:true,depth:false,powerPreference:'low-power'});
+      if(!this.gl) return;
+      const gl=this.gl;
+      try{
+        const compile=(type,code)=>{
+          const shader=gl.createShader(type);gl.shaderSource(shader,code);gl.compileShader(shader);
+          if(!gl.getShaderParameter(shader,gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(shader));
+          return shader;
+        };
+        this.program=gl.createProgram();
+        gl.attachShader(this.program,compile(gl.VERTEX_SHADER,VERTEX));
+        gl.attachShader(this.program,compile(gl.FRAGMENT_SHADER,FRAGMENT));
+        gl.linkProgram(this.program);
+        if(!gl.getProgramParameter(this.program,gl.LINK_STATUS))throw new Error(gl.getProgramInfoLog(this.program));
+        gl.useProgram(this.program);
+        this.uniforms={};
+        for(const name of ['resolution','rect','crop','phase','stride','facing','time','seed','sleep','look','pounce','behavior','alpha'])this.uniforms[name]=gl.getUniformLocation(this.program,'u_'+name);
+        const vertices=[];
+        const steps=32;
+        for(let y=0;y<steps;y++)for(let x=0;x<steps;x++){
+          const l=x/steps,r=(x+1)/steps,t=y/steps,b=(y+1)/steps;
+          vertices.push(l,t,r,t,l,b,r,t,r,b,l,b);
+        }
+        this.count=vertices.length/2;
+        const buffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(vertices),gl.STATIC_DRAW);
+        const attribute=gl.getAttribLocation(this.program,'a_pos');gl.enableVertexAttribArray(attribute);gl.vertexAttribPointer(attribute,2,gl.FLOAT,false,0,0);
+        gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);gl.clearColor(0,0,0,0);
+        this.texture=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,this.texture);
+        gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+        gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
+        const image=new Image();
+        image.onload=()=>{
+          gl.bindTexture(gl.TEXTURE_2D,this.texture);
+          gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,image);
+          this.ready=true;
+          room.classList.add('animated-cats');
+          // Keep the first texture visible while the full-detail atlas loads.
+          const detail=room.dataset.catDetail;
+          if(detail && image.src!==new URL(detail,document.baseURI).href){
+            const upgrade=()=>{image.src=detail;};
+            if(window.requestIdleCallback)window.requestIdleCallback(upgrade,{timeout:2000});
+            else window.setTimeout(upgrade,600);
+          }
+        };
+        image.src='./cats-atlas-small-6434341aee09.webp';
+        room.insertBefore(this.canvas,room.querySelector('#cats'));
+        this.canvas.addEventListener('webglcontextlost',(event)=>{event.preventDefault();this.ready=false;room.classList.remove('animated-cats');});
+      }catch(error){console.warn('Cat animation fallback:',error.message);}
+    }
+
+    draw(cats,width,height,catWidth,catHeight,time){
+      if(!this.ready)return;
+      const frameKey=Math.floor(time*45)+':'+width+':'+height+':'+cats.length;
+      if(this.lastFrameKey===frameKey)return;
+      this.lastFrameKey=frameKey;
+      const gl=this.gl;
+      const ratio=Math.min(window.devicePixelRatio||1,2);
+      const padding=12;
+      const cellW=catWidth+padding*2,cellH=catHeight+padding*2;
+      const ordered=cats.filter(cat=>!cat.box);
+      const columns=Math.min(6,Math.max(1,ordered.length));
+      const rows=Math.max(1,Math.ceil(ordered.length/columns));
+      const bufferW=columns*cellW,bufferH=rows*cellH;
+      const pixelW=Math.round(bufferW*ratio),pixelH=Math.round(bufferH*ratio);
+      if(this.canvas.width!==pixelW||this.canvas.height!==pixelH){this.canvas.width=pixelW;this.canvas.height=pixelH;gl.viewport(0,0,pixelW,pixelH);}
+      gl.clear(gl.COLOR_BUFFER_BIT);
+      gl.useProgram(this.program);
+      gl.uniform2f(this.uniforms.resolution,bufferW,bufferH);
+      const tiles=[];
+      for(let i=0;i<ordered.length;i++){
+        const cat=ordered[i];
+        const tileX=(i%columns)*cellW,tileY=Math.floor(i/columns)*cellH;
+        if(!cat.motionCanvas){
+          cat.motionCanvas=document.createElement('canvas');
+          cat.motionCanvas.className='cat-motion';
+          cat.motionCanvas.setAttribute('aria-hidden','true');
+          cat.motionContext=cat.motionCanvas.getContext('2d');
+          cat.element.append(cat.motionCanvas);
+        }
+        const drawW=Math.round(cellW*ratio),drawH=Math.round(cellH*ratio);
+        if(cat.motionCanvas.width!==drawW||cat.motionCanvas.height!==drawH){
+          cat.motionCanvas.width=drawW;cat.motionCanvas.height=drawH;
+          Object.assign(cat.motionCanvas.style,{width:cellW+'px',height:cellH+'px',left:-padding+'px',top:-padding+'px'});
+        }
+        const col=cat.id%3,lower=cat.id%6>=3;
+        const x=[0,374,737][col],w=[374,363,349][col];
+        const mix=cat.sleepBlend||0;
+        if(mix<.999)this.sprite(cat,x,lower?725:0,w,lower?385:390,false,1-mix,catWidth,catHeight,time,tileX+padding,tileY+padding);
+        if(mix>.001)this.sprite(cat,x,lower?1115:395,w,lower?333:325,true,mix,catWidth,catHeight,time,tileX+padding,tileY+padding);
+        tiles.push({cat,x:tileX,y:tileY,w:drawW,h:drawH});
+      }
+      // Composite into each cat's DOM layer so boxes, paws and toys respect depth.
+      for(const tile of tiles){
+        const context=tile.cat.motionContext;
+        if(!context)continue;
+        context.clearRect(0,0,tile.w,tile.h);
+        context.drawImage(this.canvas,Math.round(tile.x*ratio),Math.round(tile.y*ratio),tile.w,tile.h,0,0,tile.w,tile.h);
+      }
+    }
+
+    sprite(cat,x,y,w,h,sleep,alpha,catWidth,catHeight,time,renderX,renderY){
+      const gl=this.gl,u=this.uniforms;
+      const spriteW=Math.min(catWidth,catHeight*w/h),spriteH=spriteW*h/w;
+      gl.uniform4f(u.rect,renderX+(catWidth-spriteW)/2,renderY+catHeight-spriteH,spriteW,spriteH);
+      gl.uniform4f(u.crop,x/1086,y/1448,w/1086,h/1448);
+      gl.uniform1f(u.phase,cat.gait||0);gl.uniform1f(u.stride,sleep?0:(cat.stride||0));gl.uniform1f(u.facing,cat.facing);
+      gl.uniform1f(u.time,time);gl.uniform1f(u.seed,cat.id*2.37);gl.uniform1f(u.sleep,sleep?1:0);
+      gl.uniform1f(u.look,cat.look||0);gl.uniform1f(u.pounce,cat.pounceProgress||0);gl.uniform1f(u.alpha,alpha);
+      gl.uniform1f(u.behavior,cat.behavior==='groom'?2:cat.behavior==='sniff'?1:0);
+      gl.drawArrays(gl.TRIANGLES,0,this.count);
+    }
+  }
+  window.MipiksCatRenderer=CatRenderer;
+})();
+</script>
+  <script>(() => {
+  'use strict';
+
+  const $ = (selector) => document.querySelector(selector);
+  const room = $('#room');
+  const catLayer = $('#cats');
+  const objectLayer = $('#objects');
+  const effectLayer = $('#effects');
+  const laserDot = $('#laser-dot');
+  const renderer = new window.MipiksCatRenderer(room);
+  const cats = [];
+  const boxes = [];
+  const foods = [];
+  const toys = [];
+  const names = ['Тыква', 'Кефир', 'Уголёк', 'Плюша', 'Пиксель', 'Бублик', 'Моти', 'Шпрота', 'Пончик', 'Луна', 'Кекс', 'Нюша', 'Персик', 'Вафля', 'Шуршик', 'Финик', 'Пуговка', 'Лапша', 'Тучка', 'Пушок', 'Манго', 'Плюшка', 'Мята', 'Сырок'];
+  let width = 1;
+  let height = 1;
+  let catWidth = 144;
+  let catHeight = 136;
+  let boxWidth = 100;
+  let boxHeight = 86;
+  let serial = 0;
+  let paused = false;
+  let laser = false;
+  let sound = false;
+  let audioContext;
+  let lastTime = 0;
+  let elapsed = 0;
+  let nextIdleEvent = 6;
+  let pointer = { x: -1000, y: -1000, inside: false };
+  let drag = null;
+  let toastTimer;
+
+  const clamp = (value, min, max) => Math.min(Math.max(value, min), Math.max(min, max));
+  const random = (min, max) => min + Math.random() * (max - min);
+  const distance = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
+  const floorMin = () => height * 0.39;
+  const catMaxX = () => Math.max(1, width - catWidth - 8);
+  const catMaxY = () => Math.max(floorMin(), height - catHeight - 10);
+
+  function catArtwork(index) {
+    const design = index % 6;
+    const column = design % 3;
+    const lower = design >= 3;
+    const x = [0, 374, 737][column];
+    const w = [374, 363, 349][column];
+    const awakeY = lower ? 725 : 0;
+    const awakeH = lower ? 385 : 390;
+    const sleepY = lower ? 1115 : 395;
+    const sleepH = lower ? 333 : 325;
+    const picture = (state, y, h) => '<svg class="cat-art cat-' + state + '" viewBox="' + x + ' ' + y + ' ' + w + ' ' + h + '" preserveAspectRatio="xMidYMax meet" aria-hidden="true"><image href="./cats-atlas-small-6434341aee09.webp" width="1086" height="1448"/></svg>';
+    return '<span class="cat-visual">' + picture('awake', awakeY, awakeH) + picture('asleep', sleepY, sleepH) + '</span>';
+  }
+
+  function boxSVG() {
+    return `<svg viewBox="0 0 100 86" aria-hidden="true"><ellipse cx="50" cy="77" rx="46" ry="7" fill="#6e543f" opacity=".13"/>
+      <path d="m13 31 35-12 40 10-39 17Z" fill="#8e6447"/>
+      <g class="box-cat-head"><path d="M30 34V9l12 10h14L71 7v28Z" fill="#efd7b0"/><path d="m33 15 2 11 5-5m27-7-2 12-6-5" fill="#dda8a0"/><path d="m39 29q4 4 8 0m9 0q4 4 8 0" fill="none" stroke="#6c5c50" stroke-width="1.5"/><path d="m49 34 6 0-3 3Z" fill="#c18c85"/></g>
+      <path d="m13 31 36 12v37L13 65Z" fill="#c99c69"/><path d="m49 43 39-14v37L49 80Z" fill="#dab17d"/><path d="m13 31-12 11 36 12 12-11m0 0 12 10 38-15-11-9" fill="#e2bd89" stroke="#bf9460" stroke-width="1"/>
+      <path d="m20 56 20 7m-20-2 13 5" stroke="#ae8053" stroke-width="1.5"/><path d="m68 63 9-3m-4-6v12" stroke="#ae8053" stroke-width="2"/><path d="m14 31 35 12v36" fill="none" stroke="#ad8154" stroke-width="1"/></svg>`;
+  }
+
+  function setPosition(item) {
+    item.element.style.transform = `translate3d(${item.x.toFixed(2)}px,${item.y.toFixed(2)}px,0)`;
+    item.element.style.zIndex = String(Math.round(item.y + (item.kind === 'box' ? boxHeight : catHeight)));
+  }
+
+  function makeTarget(cat) {
+    cat.target = { x: random(6, catMaxX()), y: random(floorMin(), catMaxY()) };
+    cat.wait = random(0.15, 1.5);
+  }
+
+  function addCat(initial = false) {
+    if (cats.length >= 24) { toast('24 котика! Кажется, теперь это их квартира.'); return; }
+    const i = serial++;
+    const name = names[i % names.length];
+    const element = document.createElement('button');
+    element.className = 'cat';
+    element.type = 'button';
+    element.setAttribute('aria-label', `Погладить котика ${name}`);
+    element.innerHTML = `<span class="cat-shadow"></span>${catArtwork(i)}<span class="sleep-symbol" aria-hidden="true">z<span>z</span></span><span class="cat-name">${name}</span>`;
+    const cat = {
+      element, name, id: i, x: initial ? (width - catWidth) * [0.13, 0.34, 0.53, 0.71, 0.84][i % 5] : random(10, catMaxX()),
+      y: initial ? clamp(height * [0.59, 0.48, 0.67, 0.45, 0.62][i % 5], floorMin(), catMaxY()) : random(floorMin(), catMaxY()),
+      speed: random(27, 44), sleeping: initial && i === 3, sleepLeft: initial && i === 3 ? 18 : 0,
+      wait: 0, box: null, mood: 0, target: null, facing: 1,
+      vx: 0, vy: 0, gait: random(0, 1), stride: 0, look: 0, sleepBlend: initial && i === 3 ? 1 : 0,
+      behavior: "", behaviorTime: 0, pounceCooldown: random(1, 4), pounceTime: 0, pounceProgress: 0,
+    };
+    element.addEventListener('click', (event) => {
+      if (laser || paused) return;
+      event.stopPropagation();
+      releaseBox(cat);
+      cat.sleeping = false;
+      cat.wait = 2;
+      cat.mood = 2; cat.behavior = ''; cat.behaviorTime = 0;
+      element.classList.remove('petted');
+      requestAnimationFrame(() => element.classList.add('petted'));
+      effect('♥', cat.x + catWidth * .55, cat.y + 9);
+      effect('♥', cat.x + catWidth * .36, cat.y + 20);
+      meow(true);
+      if (Math.random() < .25) toast(`${name}: мур-мур. Продолжайте.`);
+    });
+    catLayer.append(element);
+    cats.push(cat);
+    makeTarget(cat);
+    setPosition(cat);
+    updateCount();
+    if (!initial) { effect('привет, мир!', cat.x + 10, cat.y); toast(`${name} теперь живёт здесь. Устраивайтесь!`); meow(); }
+  }
+
+  function releaseBox(cat) {
+    if (cat.box) {
+      cat.box.occupant = null;
+      cat.box.element.classList.remove('occupied');
+      cat.box.element.querySelector('.box-label').textContent = 'Свободная недвижимость';
+      cat.box = null;
+      cat.element.hidden = false;
+    }
+  }
+
+  function addBox(initial = false) {
+    if (boxes.length >= 6) { toast('Шесть коробок — уже почти жилой комплекс.'); return; }
+    const element = document.createElement('button');
+    element.type = 'button';
+    element.className = 'box';
+    element.setAttribute('aria-label', 'Коробка. Перетащите или нажмите, чтобы позвать котика.');
+    element.innerHTML = `<span class="box-visitor" aria-hidden="true"></span>${boxSVG()}<span class="box-label">Свободная недвижимость</span>`;
+    const box = { element, kind: 'box', x: initial ? width * .76 : random(15, Math.max(16, width - boxWidth - 20)), y: clamp(initial ? height * .64 : random(height * .5, height * .76), floorMin(), height - boxHeight - 10), occupant: null };
+    boxes.push(box);
+    objectLayer.append(element);
+    setPosition(box);
+    element.addEventListener('pointerdown', (event) => {
+      if (paused || laser) return;
+      const p = localPointer(event);
+      drag = { box, dx: p.x - box.x, dy: p.y - box.y, originX: p.x, originY: p.y, moved: false };
+      element.setPointerCapture(event.pointerId);
+      event.preventDefault();
+    });
+    element.addEventListener('pointermove', (event) => {
+      if (!drag || drag.box !== box) return;
+      const p = localPointer(event);
+      if (Math.hypot(p.x - drag.originX, p.y - drag.originY) > 5) drag.moved = true;
+      box.x = clamp(p.x - drag.dx, 0, width - boxWidth);
+      box.y = clamp(p.y - drag.dy, floorMin() - 15, height - boxHeight - 8);
+      setPosition(box);
+      if (box.occupant) { box.occupant.x = box.x; box.occupant.y = box.y; }
+    });
+    const endDrag = (event) => {
+      if (!drag || drag.box !== box) return;
+      const moved = drag.moved;
+      drag = null;
+      if (element.hasPointerCapture(event.pointerId)) element.releasePointerCapture(event.pointerId);
+      if (!moved) inviteToBox(box);
+    };
+    element.addEventListener('pointerup', endDrag);
+    element.addEventListener('pointercancel', () => { drag = null; });
+    element.addEventListener('click', (event) => { if (event.detail === 0 && !paused && !laser) inviteToBox(box); });
+    if (!initial) toast('Коробку можно двигать. Котики оценят.');
+  }
+
+  function inviteToBox(box) {
+    if (box.occupant) {
+      const cat = box.occupant;
+      releaseBox(cat);
+      cat.x = clamp(box.x + boxWidth * .6, 0, catMaxX());
+      cat.y = clamp(box.y + 5, floorMin(), catMaxY());
+      cat.sleeping = false;
+      makeTarget(cat);
+      effect('мрр?', box.x + 30, box.y);
+      meow();
+      return;
+    }
+    const available = cats.filter(cat => !cat.box);
+    available.sort((a, b) => distance(a, box) - distance(b, box));
+    if (available[0]) { available[0].sleeping = false; available[0].wait = 0; available[0].boxTarget = box; toast('Коробка вызвала кошачий интерес.'); }
+  }
+
+  function feed() {
+    if (paused) { toast('Сначала разбудите комнату кнопкой ▶.'); return; }
+    if (foods.length > 12) { toast('Вкусняшки ещё не закончились.'); return; }
+    const center = { x: random(width * .2, width * .8), y: random(height * .57, height * .85) };
+    for (let i = 0; i < 8; i++) {
+      const element = document.createElement('span');
+      element.className = 'food';
+      const food = { element, x: clamp(center.x + random(-45, 45), 12, width - 16), y: clamp(center.y + random(-25, 25), floorMin() + 30, height - 20), life: 45 };
+      element.style.left = `${food.x}px`;
+      element.style.top = `${food.y}px`;
+      element.style.zIndex = String(Math.round(food.y));
+      objectLayer.append(element);
+      foods.push(food);
+    }
+    cats.forEach(cat => { releaseBox(cat); cat.sleeping = false; cat.wait = 0; cat.boxTarget = null; cat.behavior = ''; cat.behaviorTime = 0; });
+    toast('Шуршание пакета услышали абсолютно все.');
+    meow();
+  }
+
+  function makeToy(label, x, y) {
+    const element = document.createElement('button');
+    element.className = 'toy-button';
+    element.type = 'button';
+    element.innerHTML = label;
+    const toy = { element, x, y, vx: 0, vy: 0, angle: random(-7, 6), spin: 0, cooldown: 0 };
+    element.addEventListener('click', () => {
+      if (paused) return;
+      toy.vx = random(-70, 70);
+      toy.vy = -70;
+      toy.spin = random(-90, 90);
+      effect('упс!', toy.x + 15, toy.y);
+      if (label.includes('НАЖИМАТЬ')) { addCat(); toast('Написано же: не нажимать. Теперь котиков больше.'); }
+      else { cats.forEach(cat => { releaseBox(cat); cat.sleeping = true; cat.sleepLeft = 12; cat.boxTarget = null; }); toast('Тихий час. Даже хаосу нужен отдых.'); }
+    });
+    objectLayer.append(element);
+    toys.push(toy);
+    renderToy(toy);
+  }
+
+  function renderToy(toy) {
+    toy.element.style.transform = `translate3d(${toy.x}px,${toy.y}px,0) rotate(${toy.angle}deg)`;
+    toy.element.style.zIndex = String(Math.round(toy.y + 12));
+  }
+
+  function effect(text, x, y) {
+    const element = document.createElement('span');
+    element.className = `effect${text.length > 2 ? ' word' : ''}`;
+    element.textContent = text;
+    element.style.left = `${clamp(x, 5, width - (text.length > 2 ? 120 : 24))}px`;
+    element.style.top = `${clamp(y, 10, height - 30)}px`;
+    effectLayer.append(element);
+    setTimeout(() => element.remove(), text.length > 2 ? 1900 : 1300);
+  }
+
+  function toast(message) {
+    const element = $('#toast');
+    element.textContent = message;
+    element.classList.add('visible');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => element.classList.remove('visible'), 3000);
+  }
+
+  function meow(soft = false) {
+    if (!sound || !audioContext) return;
+    try {
+      const t = audioContext.currentTime;
+      const oscillator = audioContext.createOscillator();
+      const gain = audioContext.createGain();
+      const filter = audioContext.createBiquadFilter();
+      oscillator.type = soft ? 'sine' : 'triangle';
+      oscillator.frequency.setValueAtTime(soft ? 150 : 480, t);
+      oscillator.frequency.exponentialRampToValueAtTime(soft ? 110 : 700, t + .1);
+      oscillator.frequency.exponentialRampToValueAtTime(soft ? 135 : 300, t + .4);
+      filter.type = 'lowpass';
+      filter.frequency.value = soft ? 400 : 1000;
+      gain.gain.setValueAtTime(0, t);
+      gain.gain.linearRampToValueAtTime(soft ? .09 : .05, t + .04);
+      gain.gain.exponentialRampToValueAtTime(.001, t + .5);
+      oscillator.connect(filter).connect(gain).connect(audioContext.destination);
+      oscillator.start(t);
+      oscillator.stop(t + .52);
+    } catch { /* Audio stays optional when unavailable in the browser. */ }
+  }
+
+  function updateCount() {
+    const count = cats.length;
+    const last = count % 10;
+    const teen = count % 100 >= 11 && count % 100 <= 14;
+    $('#cat-count').textContent = String(count);
+    $('#cat-count-label').textContent = `${teen ? 'котиков' : last === 1 ? 'котик' : last >= 2 && last <= 4 ? 'котика' : 'котиков'} дома`;
+    $('#add-cat').disabled = count >= 24;
+  }
+
+  function localPointer(event) {
+    const rect = room.getBoundingClientRect();
+    return { x: event.clientX - rect.left - room.clientLeft, y: event.clientY - rect.top - room.clientTop };
+  }
+
+  function updatePointer(event) {
+    const p = localPointer(event);
+    pointer = { ...p, inside: p.x >= 0 && p.x <= width && p.y >= 0 && p.y <= height };
+    if (laser && pointer.inside) {
+      laserDot.style.transform = `translate3d(${p.x - 4}px,${p.y - 4}px,0)`;
+      laserDot.classList.add('visible');
+    }
+  }
+
+  function setLaser(value) {
+    laser = value;
+    room.classList.toggle('laser-active', laser);
+    $('#laser').setAttribute('aria-pressed', String(laser));
+    if (!laser) laserDot.classList.remove('visible');
+    if (laser) {
+      cats.forEach(cat => { releaseBox(cat); cat.sleeping = false; cat.wait = 0; cat.boxTarget = null; cat.behavior = ''; cat.behaviorTime = 0; });
+      $('#room-instruction').textContent = '✦ Водите по комнате. На телефоне — касайтесь и ведите.';
+      toast('Красная точка. Много лап. Ноль самообладания.');
+    } else $('#room-instruction').textContent = '✦ Погладьте котика. Он заслужил.';
+  }
+
+  function setPaused(value) {
+    paused = value;
+    $('#pause').setAttribute('aria-pressed', String(paused));
+    $('#pause').setAttribute('aria-label', paused ? 'Продолжить игру' : 'Поставить на паузу');
+    $('#pause').querySelector('use').setAttribute('href', paused ? '#i-play' : '#i-pause');
+    $('#pause-overlay').hidden = !paused;
+    document.body.classList.toggle('paused', paused);
+    $('#room-status').textContent = paused ? 'Время остановилось.' : 'Все дома. Почти.';
+  }
+
+  function resize() {
+    const oldW = width;
+    const oldH = height;
+    width = room.clientWidth;
+    height = room.clientHeight;
+    const mobile = window.matchMedia('(max-width:560px)').matches;
+    catWidth = mobile ? 108 : 144;
+    catHeight = mobile ? 102 : 136;
+    boxWidth = mobile ? 83 : 100;
+    boxHeight = mobile ? 72 : 86;
+    cats.forEach(cat => {
+      cat.x = clamp(cat.x * width / oldW, 0, catMaxX());
+      cat.y = clamp(cat.y * height / oldH, floorMin(), catMaxY());
+      makeTarget(cat); setPosition(cat);
+    });
+    boxes.forEach(box => { box.x = clamp(box.x * width / oldW, 0, width - boxWidth); box.y = clamp(box.y * height / oldH, floorMin(), height - boxHeight - 8); setPosition(box); });
+    toys.forEach(toy => { toy.x = clamp(toy.x * width / oldW, 5, width - toy.element.offsetWidth - 5); toy.y = clamp(toy.y * height / oldH, height * .68, height - 35); renderToy(toy); });
+    foods.forEach(food => { food.x = clamp(food.x * width / oldW, 5, width - 14); food.y = clamp(food.y * height / oldH, floorMin(), height - 14); food.element.style.left = `${food.x}px`; food.element.style.top = `${food.y}px`; });
+    laserDot.classList.remove('visible');
+    pointer.inside = false;
+  }
+
+  function reset() {
+    renderer.lastFrameKey = '';
+    cats.length = 0; boxes.length = 0; foods.length = 0; toys.length = 0;
+    catLayer.replaceChildren(); objectLayer.replaceChildren(); effectLayer.replaceChildren();
+    serial = 0; elapsed = 0; nextIdleEvent = 6; drag = null;
+    setLaser(false); setPaused(false);
+    for (let i = 0; i < 5; i++) addCat(true);
+    addBox(true);
+    makeToy('НЕ <span>НАЖИМАТЬ</span>', width * .29, height * .86);
+    makeToy('ТИХИЙ ЧАС', width * .57, height * .88);
+    $('#add-box').disabled = false;
+  }
+
+  function updateCat(cat, dt) {
+    cat.mood = Math.max(0, cat.mood - dt);
+    cat.wait = Math.max(0, cat.wait - dt);
+    cat.behaviorTime = Math.max(0, cat.behaviorTime - dt);
+    cat.pounceCooldown = Math.max(0, cat.pounceCooldown - dt);
+    if (!cat.behaviorTime) cat.behavior = '';
+    if (cat.pounceTime > 0) {
+      cat.pounceTime = Math.max(0, cat.pounceTime - dt);
+      cat.pounceProgress = cat.pounceTime ? 1 - cat.pounceTime / .58 : 0;
+    }
+    if (cat.box) {
+      cat.sleepLeft -= dt;
+      cat.vx = 0; cat.vy = 0; cat.stride = 0;
+      if (cat.sleepLeft <= 0) {
+        releaseBox(cat);
+        cat.x = clamp(cat.x + 35, 0, catMaxX());
+        cat.sleeping = false;
+        makeTarget(cat);
+      } else return;
+    }
+    if (cat.sleeping) {
+      cat.sleepLeft -= dt;
+      if (cat.sleepLeft <= 0 || (laser && pointer.inside) || foods.length) {
+        cat.sleeping = false; cat.behavior = ''; makeTarget(cat);
+      }
+    }
+    let desiredX = 0;
+    let desiredY = 0;
+    let running = false;
+    let target = null;
+    let eating = null;
+    if (!cat.sleeping && cat.wait <= 0 && !cat.behaviorTime) {
+      target = cat.target;
+      let speed = cat.speed;
+      if (laser && pointer.inside) {
+        target = { x: clamp(pointer.x - catWidth * .65, 0, catMaxX()), y: clamp(pointer.y - catHeight * .65, floorMin(), catMaxY()) };
+        speed *= 3.05;
+        running = true;
+      } else if (foods.length) {
+        let nearest = foods[0];
+        for (const food of foods) {
+          if (Math.hypot(food.x - cat.x - catWidth * .62, food.y - cat.y - catHeight * .8) < Math.hypot(nearest.x - cat.x - catWidth * .62, nearest.y - cat.y - catHeight * .8)) nearest = food;
+        }
+        target = { x: clamp(nearest.x - catWidth * .62, 0, catMaxX()), y: clamp(nearest.y - catHeight * .8, floorMin(), catMaxY()) };
+        eating = nearest;
+        speed *= 1.6;
+      } else if (cat.boxTarget && !cat.boxTarget.occupant && drag?.box !== cat.boxTarget) {
+        target = { x: clamp(cat.boxTarget.x + (boxWidth - catWidth) / 2, 0, catMaxX()), y: clamp(cat.boxTarget.y - 5, floorMin(), catMaxY()) };
+      }
+      if (!target) { makeTarget(cat); target = cat.target; }
+      const dx = target.x - cat.x;
+      const dy = target.y - cat.y;
+      const d = Math.hypot(dx, dy);
+      if (d > 5) {
+        const approach = clamp(d / (running ? 26 : 36), .12, 1);
+        desiredX = dx / d * speed * approach;
+        desiredY = dy / d * speed * approach;
+        // Steer around other cats rather than crossing directly through them.
+        for (const other of cats) {
+          if (other === cat || other.box) continue;
+          const ax = cat.x - other.x;
+          const ay = (cat.y - other.y) * 1.65;
+          const apart = Math.hypot(ax, ay);
+          const clearance = catWidth * .58;
+          if (apart > .5 && apart < clearance && d > 25) {
+            const push = (1 - apart / clearance) * speed * .65;
+            desiredX += ax / apart * push;
+            desiredY += ay / apart * push * .55;
+          }
+        }
+        for (const box of boxes) {
+          if (cat.boxTarget === box || box.occupant === cat) continue;
+          const ax = cat.x + catWidth * .5 - box.x - boxWidth * .5;
+          const ay = (cat.y + catHeight * .85 - box.y - boxHeight * .8) * 1.4;
+          const apart = Math.hypot(ax, ay);
+          const clearance = (catWidth + boxWidth) * .30;
+          if (apart > 1 && apart < clearance) {
+            const push = (1 - apart / clearance) * speed * 1.4;
+            desiredX += ax / apart * push;
+            desiredY += ay / apart * push * .7;
+          }
+        }
+        if (running && d < 48 && cat.pounceCooldown <= 0 && Math.hypot(cat.vx, cat.vy) > 10) {
+          cat.pounceTime = .58;
+          cat.pounceCooldown = random(3.4, 6.5);
+        }
+      } else if (Math.hypot(cat.vx, cat.vy) < 13) {
+        if (eating) {
+          const index = foods.indexOf(eating);
+          if (index !== -1) {
+            foods.splice(index, 1); eating.element.remove();
+            effect('♥', cat.x + catWidth * .65, cat.y + 20);
+            cat.wait = 1.1; cat.behavior = 'sniff'; cat.behaviorTime = 1.1;
+          }
+        } else if (cat.boxTarget && !cat.boxTarget.occupant && !laser) {
+          const box = cat.boxTarget;
+          cat.box = box; box.occupant = cat; cat.boxTarget = null;
+          cat.sleeping = true; cat.sleepLeft = random(12, 24); cat.element.hidden = true;
+          cat.vx = 0; cat.vy = 0;
+          box.element.querySelector('.box-visitor').innerHTML = catArtwork(cat.id);
+          box.element.classList.add('occupied');
+          box.element.querySelector('.box-label').textContent = cat.name + ': занято, мур.';
+          effect('идеально.', box.x + 15, box.y);
+        } else if (!laser) {
+          const choice = Math.random();
+          if (choice < .13) { cat.sleeping = true; cat.sleepLeft = random(9, 20); }
+          else if (choice < .33) { cat.behavior = 'groom'; cat.behaviorTime = random(2, 3.5); }
+          else if (choice < .57) { cat.behavior = 'sniff'; cat.behaviorTime = random(1, 1.8); }
+          makeTarget(cat);
+          cat.wait += random(.4, 1.4);
+        }
+      }
+    }
+    // Bounded acceleration gives every turn a braking phase and keeps arrivals soft.
+    const acceleration = running ? 245 : (desiredX || desiredY ? 76 : 125);
+    const dvx = desiredX - cat.vx;
+    const dvy = desiredY - cat.vy;
+    const delta = Math.hypot(dvx, dvy);
+    const fraction = delta > 0 ? Math.min(1, acceleration * dt / delta) : 0;
+    cat.vx += dvx * fraction;
+    cat.vy += dvy * fraction;
+    if (Math.hypot(cat.vx, cat.vy) < .25) { cat.vx = 0; cat.vy = 0; }
+    const oldX = cat.x;
+    const oldY = cat.y;
+    cat.x = clamp(cat.x + cat.vx * dt, 0, catMaxX());
+    cat.y = clamp(cat.y + cat.vy * dt, floorMin(), catMaxY());
+    if (cat.x === 0 || cat.x === catMaxX()) cat.vx *= .5;
+    if (cat.y === floorMin() || cat.y === catMaxY()) cat.vy *= .5;
+    const travel = Math.hypot(cat.x - oldX, cat.y - oldY);
+    const actualSpeed = travel / Math.max(dt, .001);
+    cat.gait = (cat.gait + travel / (catWidth * .18)) % 1;
+    const strideGoal = clamp(actualSpeed / 18, 0, 1);
+    cat.stride += (strideGoal - cat.stride) * (1 - Math.exp(-dt * 10));
+    if (Math.abs(cat.vx) > 5) cat.facing = cat.vx < 0 ? -1 : 1;
+    const sleepGoal = cat.sleeping ? 1 : 0;
+    cat.sleepBlend = clamp(cat.sleepBlend + clamp(sleepGoal - cat.sleepBlend, -dt * 2.8, dt * 2.2), 0, 1);
+    const lookGoal = pointer.inside && !cat.sleeping ? clamp((pointer.x - cat.x - catWidth * .6) / 150, -1, 1) * cat.facing : Math.sin(elapsed * .65 + cat.id) * .3;
+    cat.look += (lookGoal - cat.look) * (1 - Math.exp(-dt * 4));
+    if (cat.boxTarget?.occupant && cat.boxTarget.occupant !== cat) cat.boxTarget = null;
+    cat.element.classList.toggle('walking', actualSpeed > 4);
+    cat.element.classList.toggle('sprinting', actualSpeed > cat.speed * 1.6);
+    cat.element.classList.toggle('sleeping', cat.sleeping);
+    cat.element.classList.toggle('happy', cat.mood > 0);
+    cat.element.classList.toggle('facing-left', cat.facing === -1);
+    setPosition(cat);
+    if (actualSpeed > 8) {
+      for (const toy of toys) {
+        if (toy.cooldown <= 0 && Math.abs(cat.x + catWidth * .5 - toy.x - toy.element.offsetWidth * .5) < 38 && Math.abs(cat.y + catHeight * .85 - toy.y) < 25) {
+          toy.vx = cat.facing * random(40, 95); toy.vy = random(-65, -25); toy.spin = random(-130, 130); toy.cooldown = 1.5;
+          effect('тыгыдык', cat.x, cat.y + 10);
+        }
+      }
+    }
+  }
+
+
+  function tick(time) {
+    const dt = lastTime ? Math.min((time - lastTime) / 1000, .045) : .016;
+    lastTime = time;
+    if (!paused && !document.hidden) {
+      elapsed += dt;
+      for (const cat of cats) updateCat(cat, dt);
+      for (let i = 0; i < cats.length; i++) {
+        const a = cats[i];
+        if (a.box || a.sleeping) continue;
+        for (let j = i + 1; j < cats.length; j++) {
+          const b = cats[j];
+          if (b.box || b.sleeping) continue;
+          const dx = a.x - b.x;
+          const dy = (a.y - b.y) * 1.7;
+          const d = Math.hypot(dx, dy);
+          const minDistance = catWidth * .49;
+          if (d > .1 && d < minDistance) {
+            const push = (minDistance - d) * Math.min(.08, dt * 2.0);
+            a.x = clamp(a.x + dx / d * push, 0, catMaxX());
+            a.y = clamp(a.y + dy / d * push * .5, floorMin(), catMaxY());
+            b.x = clamp(b.x - dx / d * push, 0, catMaxX());
+            b.y = clamp(b.y - dy / d * push * .5, floorMin(), catMaxY());
+            setPosition(a); setPosition(b);
+          }
+        }
+      }
+      for (const toy of toys) {
+        toy.cooldown -= dt;
+        if (Math.abs(toy.vx) + Math.abs(toy.vy) + Math.abs(toy.spin) < .2) continue;
+        toy.x += toy.vx * dt; toy.y += toy.vy * dt; toy.angle += toy.spin * dt;
+        toy.vx *= Math.pow(.18, dt); toy.vy *= Math.pow(.12, dt); toy.spin *= Math.pow(.12, dt);
+        if (toy.x < 5 || toy.x > width - toy.element.offsetWidth - 5) toy.vx *= -.7;
+        toy.x = clamp(toy.x, 5, width - toy.element.offsetWidth - 5);
+        toy.y = clamp(toy.y, height * .66, height - 35);
+        renderToy(toy);
+      }
+      for (let i = foods.length - 1; i >= 0; i--) { foods[i].life -= dt; if (foods[i].life <= 0) { foods[i].element.remove(); foods.splice(i, 1); } }
+      if (elapsed > nextIdleEvent) {
+        nextIdleEvent = elapsed + random(7, 13);
+        const available = cats.filter(cat => !cat.box && !cat.sleeping);
+        const cat = available[Math.floor(Math.random() * available.length)];
+        if (cat && !laser && !foods.length) {
+          if (Math.random() < .35 && boxes.some(box => !box.occupant)) cat.boxTarget = boxes.find(box => !box.occupant);
+          else effect(['мяу?', 'жизнь хороша', 'мур.', 'а обед?', 'я просто кот'][Math.floor(Math.random() * 5)], cat.x, cat.y);
+        }
+      }
+    }
+    renderer.draw(cats, width, height, catWidth, catHeight, elapsed);
+    requestAnimationFrame(tick);
+  }
+
+  $('#add-cat').addEventListener('click', () => addCat());
+  $('#add-box').addEventListener('click', () => { addBox(); $('#add-box').disabled = boxes.length >= 6; });
+  $('#feed').addEventListener('click', feed);
+  $('#laser').addEventListener('click', () => setLaser(!laser));
+  $('#pause').addEventListener('click', () => setPaused(!paused));
+  $('#reset').addEventListener('click', () => { reset(); toast('Снова пять котиков и никаких обязательств.'); });
+  $('#sound').addEventListener('click', async () => {
+    if (!sound) {
+      const Audio = window.AudioContext || window.webkitAudioContext;
+      if (!Audio) { toast('Этот браузер не поддерживает звук. Котики всё равно с вами.'); return; }
+      try { audioContext ||= new Audio(); await audioContext.resume(); } catch { toast('Не удалось включить звук в этом браузере.'); return; }
+    }
+    sound = !sound;
+    $('#sound').setAttribute('aria-pressed', String(sound));
+    $('#sound').setAttribute('aria-label', sound ? 'Выключить звук' : 'Включить звук');
+    $('#sound').querySelector('use').setAttribute('href', sound ? '#i-sound' : '#i-mute');
+    $('#sound').querySelector('span').textContent = sound ? 'Звук включён' : 'Звук выключен';
+    meow();
+  });
+  room.addEventListener('pointermove', updatePointer);
+  room.addEventListener('pointerdown', (event) => { updatePointer(event); if (laser) { room.setPointerCapture(event.pointerId); event.preventDefault(); } });
+  room.addEventListener('pointerup', (event) => { if (room.hasPointerCapture(event.pointerId)) room.releasePointerCapture(event.pointerId); });
+  room.addEventListener('pointerleave', () => { if (!drag) { pointer.inside = false; laserDot.classList.remove('visible'); } });
+  room.addEventListener('pointercancel', () => { pointer.inside = false; laserDot.classList.remove('visible'); drag = null; });
+  document.addEventListener('keydown', (event) => {
+    if (event.repeat || event.ctrlKey || event.altKey || event.metaKey || /INPUT|TEXTAREA|SELECT/.test(event.target.tagName)) return;
+    const key = event.key.toLowerCase();
+    if (key === 'k' || key === 'к') addCat();
+    if (key === 'l' || key === 'л') setLaser(!laser);
+    if (event.key === 'Escape') setLaser(false);
+    if (event.code === 'Space' && (event.target === room || event.target === document.body)) { event.preventDefault(); setPaused(!paused); }
+  });
+  document.addEventListener('visibilitychange', () => { lastTime = 0; });
+  new ResizeObserver(resize).observe(room);
+  resize();
+  reset();
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) setPaused(true);
+  requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>
